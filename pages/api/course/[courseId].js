@@ -1,4 +1,4 @@
-import { throw404Error, throwError, throwRouteError } from "@/utils/api/error";
+import {  throwError, throwRouteError } from "@/utils/api/error";
 import "@/utils/api/middleWare";
 import { send404Response } from "@/utils/api/response";
 import coursesModel from "@/models/course";
@@ -22,11 +22,10 @@ export default async (req, res) => {
     switch (res.method) {
       case "PUT": {
         try {
-          const { title, img } = req.body;
+          const { title } = req.body;
           await coursesModel.updateOne(
             { _id: courseID },
             {
-              img,
               title,
               updatedAt: new Date().toLocaleString(),
             }

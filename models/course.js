@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
 
-const shema = mongoose.Schema({
+const shema = mongoose?.Schema({
   img: {
     type: String,
     default: "/images/courses/js.png"
@@ -19,4 +19,4 @@ const shema = mongoose.Schema({
   }
 })
 
-export default mongoose.models.Course || mongoose.model("Course", shema)
+export default mongoose?.models.Course || mongoose?.model("Course", shema)

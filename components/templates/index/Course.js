@@ -2,8 +2,19 @@ import CoursesItem from "@/components/modules/coursesItem/CoursesItem";
 import { useState } from "react";
 import AddCourseModal from "./AddCourseModal";
 import styles from "@/styles/Course.module.css";
+import coursesModel from "@/models/course";
 
-const Course = () => {
+export const getStaticProps = async () => {
+  const courses = await coursesModel.find()
+  return {
+    props: {
+      courses
+    }
+  }
+}
+
+
+const Course = (props) => {
   const [showAddCourseModal, setShowAddCourseModal] = useState(false);
 
   const hideAddCourseModal = () => setShowAddCourseModal(false);
@@ -22,11 +33,9 @@ const Course = () => {
           </a>
         </div>
         <ul className={styles.courses_list}>
-          <CoursesItem title="دوره PWA" image="/images/courses/PWA.jpg" />
-          <CoursesItem
-            title="دوره جاوا اسکریپت"
-            image="/images/courses/js.png"
-          />
+          {
+            props.courses?.length && props.courses.map(course => <CoursesItem key={course._id} {...course} />)
+          }
         </ul>
       </section>
 
@@ -36,5 +45,7 @@ const Course = () => {
     </>
   );
 };
+
+
 
 export default Course;

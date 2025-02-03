@@ -6,9 +6,8 @@ export default (req, res) => {
   try {
     switch (req.method) {
       case "POST":
-        const { img, title } = req.body;
+        const { title } = req.body;
         const course = coursesModel.create({
-          img,
           title,
         });
         return res.staus(201).json({
