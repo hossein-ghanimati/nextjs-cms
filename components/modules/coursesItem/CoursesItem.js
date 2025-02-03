@@ -2,12 +2,14 @@ import DeleteModal from "@/components/templates/index/DeleteModal";
 import EditModal from "@/components/templates/index/EditModal";
 import { useState } from "react";
 import styles from "@/styles/Course.module.css";
-const CoursesItem = ({ title, img }) => {
+const CoursesItem = ({ title, img, onDelete, editHandler }) => {
   const [showEditModal, setShowEditModal] = useState(false);
   const [showDeleteModal, setShowDeleteModal] = useState(false);
 
   const hideEditModal = () => setShowEditModal(false);
   const hideDeleteModal = () => setShowDeleteModal(false);
+
+  
 
   return (
     <>
@@ -39,8 +41,8 @@ const CoursesItem = ({ title, img }) => {
           </a>
         </div>
       </li>
-      {showEditModal && <EditModal hideEditModal={hideEditModal} />}
-      {showDeleteModal && <DeleteModal hideDeleteModal={hideDeleteModal} />}
+      {showEditModal && <EditModal hideEditModal={hideEditModal} currentTitle={title} editHandler={editHandler}  />}
+      {showDeleteModal && <DeleteModal hideDeleteModal={hideDeleteModal} onDelete={onDelete}/>}
     </>
   );
 };

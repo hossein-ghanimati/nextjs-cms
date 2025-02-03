@@ -27,9 +27,8 @@ export const promiseNotify = async (
 
   await reqCallback()
     .then((response) => {
-      console.log("response ->", response)
       toast.update(loading, {
-        render: response.data?.message || response?.message,
+        render: response?.data?.message || response?.message,
         type: "success",
         isLoading: false,
         position: "top-right",

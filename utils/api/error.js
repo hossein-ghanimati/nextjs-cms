@@ -1,7 +1,19 @@
+export const throwErrorText = (text) => {
+  throw new Error(text);
+}
+
 export const throwError = (error) => {
   const errorMessage = (error).message;
-  throw new Error(errorMessage);
+  throwErrorText(errorMessage)
 }
+
+export const throw404Error = (
+  itemName,
+  itemID,
+) => {
+
+  throwErrorText(`We Dont Have A ${itemName} With ${itemID} ID`);
+};
 
 
 export const throw404ErrorByErr = (
@@ -12,16 +24,10 @@ export const throw404ErrorByErr = (
   const errorMessage = (error).message;
   console.log(errorMessage);
 
-  throw new Error( `We Dont Have A ${itemName} With ${itemID} ID`);
+  throw404Error(itemName, itemID);
 };
 
-export const throw404Error = (
-  itemName,
-  itemID,
-) => {
 
-  throw new Error( `We Dont Have A ${itemName} With ${itemID} ID`);
-};
 
 
 

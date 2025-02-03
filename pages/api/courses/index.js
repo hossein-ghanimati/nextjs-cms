@@ -17,8 +17,15 @@ export default async (req, res) => {
             data: course,
           });
         } catch (error) {
-          throwError(error)
+          throwError(error);
         }
+      case "GET": {
+        const courses = await coursesModel.find();
+        return res.status(200).json({
+          message: "Courses fetched successfully.",
+          data: courses,
+        })
+      }
       default:
         throwRouteError();
         break;

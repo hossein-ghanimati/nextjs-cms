@@ -2,6 +2,8 @@ import CoursesItem from "@/components/modules/coursesItem/CoursesItem";
 import { useState } from "react";
 import AddCourseModal from "./AddCourseModal";
 import styles from "@/styles/Course.module.css";
+import { editCourse, removeCourse } from "@/actions/course";
+import { promiseNotify } from "@/utils/api/toastify";
 
 
 
@@ -9,7 +11,19 @@ const Course = (props) => {
   const [showAddCourseModal, setShowAddCourseModal] = useState(false);
 
   const hideAddCourseModal = () => setShowAddCourseModal(false);
+  const removeCourseHandler = async (id) => {
+    await promiseNotify("Deleting course ...", 
+      () => removeCourse(id),
+      () => {}
+    )
+  }
 
+  const editCourseHandler = async (id, title) => {
+    await promiseNotify("Editing course ...", 
+      () => editCourse(id, title),
+      () => {}
+    )
+  }
   return (
     <>
       <section className={styles.courses}>
@@ -25,7 +39,7 @@ const Course = (props) => {
         </div>
         <ul className={styles.courses_list}>
           {
-            props.courses?.length && props.courses.map(course => <CoursesItem key={course._id} {...course} />)
+            props.courses?.length && props.courses.map(course => <CoursesItem key={course._id} {...course} onDelete={async() => await removeCourseHandler(course._id)} editHandler={async courseName => await editCourseHandler(course._id, courseName)} />)
           }
         </ul>
       </section>

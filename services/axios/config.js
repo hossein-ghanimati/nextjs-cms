@@ -12,7 +12,8 @@ const sendApiReq = () => {
   
   sendRequest.interceptors.response.use(
     (response) => {
-      return response.data;
+      console.log(`${response.config.url} response ->`, response)
+      return response?.data;
     },
     (err) => {
       console.warn("Your Req Has An Err :", err);
