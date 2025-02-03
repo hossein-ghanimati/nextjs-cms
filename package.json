@@ -13,10 +13,13 @@
     "@fortawesome/free-brands-svg-icons": "^6.4.2",
     "@fortawesome/free-solid-svg-icons": "^6.4.2",
     "@fortawesome/react-fontawesome": "^0.2.0",
+    "axios": "^1.7.9",
+    "formik": "^2.4.6",
     "mongoose": "^8.9.6",
     "next": "latest",
     "react": "latest",
     "react-dom": "latest",
+    "react-toastify": "^11.0.3",
     "yup": "^1.6.1"
   }
 }

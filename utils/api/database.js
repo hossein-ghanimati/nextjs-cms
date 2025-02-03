@@ -1,5 +1,5 @@
 const { default: mongoose } = require("mongoose")
-const uri = process.DB_URI
+const uri = process.env.DB_URI 
 export const connectToDB = async () => {
   if (mongoose?.connection[0]?.readyState) {
     return false

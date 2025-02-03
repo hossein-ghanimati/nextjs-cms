@@ -2,16 +2,7 @@ import CoursesItem from "@/components/modules/coursesItem/CoursesItem";
 import { useState } from "react";
 import AddCourseModal from "./AddCourseModal";
 import styles from "@/styles/Course.module.css";
-import coursesModel from "@/models/course";
 
-export const getStaticProps = async () => {
-  const courses = await coursesModel.find()
-  return {
-    props: {
-      courses
-    }
-  }
-}
 
 
 const Course = (props) => {
