@@ -1,6 +1,12 @@
 const { default: mongoose } = require("mongoose");
+import teachersModel from "./teacher";
 
 const shema = mongoose?.Schema({
+  teacher: {
+    type: mongoose.Types.ObjectId,
+    ref: "Teacher",
+    required: true,
+  },
   img: {
     type: String,
     default: "/images/courses/js.png"
@@ -9,15 +15,9 @@ const shema = mongoose?.Schema({
     type: String,
     minLength: 3,
     required: true,
-  },
-  updatedAt: {
-    type: String,
-    default: (new Date).toLocaleString(),
-  },
-  createAt: {
-    type: String,
-    default: (new Date).toLocaleString(),
   }
+}, {
+  timestamps: true,
 })
 
 export default mongoose?.models.Course || mongoose?.model("Course", shema)

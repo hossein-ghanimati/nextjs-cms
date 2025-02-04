@@ -7,9 +7,10 @@ export default async (req, res) => {
     switch (req.method) {
       case "POST":
         try {
-          const { title } = req.body;
+          const { title, teacher } = req.body;
           const course = await coursesModel.create({
             title,
+            teacher
           });
 
           return res.status(201).json({
@@ -21,7 +22,7 @@ export default async (req, res) => {
         }
       case "GET": {
         const {q} = req.query;
-        const courses = q ? await coursesModel.find({title: {$regex: q}}) :  await coursesModel.find();
+        const courses = q ? await coursesModel.find({title: {$regex: q}}).populate("teacher") :  await coursesModel.find().populate("teacher");
         return res.status(200).json({
           message: "Courses fetched successfully.",
           data: courses,

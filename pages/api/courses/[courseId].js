@@ -30,7 +30,6 @@ export default async (req, res) => {
         const { title } = req.body;
         const wannaEditCourse = await coursesModel.findByIdAndUpdate(courseID, {
           title,
-          updatedAt: new Date().toLocaleString(),
         });
 
         if (!wannaEditCourse) {
