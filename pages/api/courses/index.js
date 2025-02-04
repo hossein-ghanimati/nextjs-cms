@@ -20,7 +20,8 @@ export default async (req, res) => {
           throwError(error);
         }
       case "GET": {
-        const courses = await coursesModel.find();
+        const {q} = req.query;
+        const courses = q ? await coursesModel.find({title: {$regex: q}}) :  await coursesModel.find();
         return res.status(200).json({
           message: "Courses fetched successfully.",
           data: courses,
