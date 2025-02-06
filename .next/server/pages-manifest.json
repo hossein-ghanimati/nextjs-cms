@@ -2,7 +2,6 @@
   "/_app": "pages/_app.js",
   "/_error": "pages/_error.js",
   "/_document": "pages/_document.js",
-  "/api/teachers/[teacherId]/courses": "pages/api/teachers/[teacherId]/courses.js",
   "/api/teachers": "pages/api/teachers.js",
-  "/api/courses": "pages/api/courses.js"
+  "/": "pages/index.js"
 }

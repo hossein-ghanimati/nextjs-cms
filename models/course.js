@@ -1,7 +1,7 @@
 const { default: mongoose } = require("mongoose");
 import teachersModel from "./teacher";
 
-const shema = mongoose?.Schema({
+export const schema = mongoose?.Schema({
   teacher: {
     type: mongoose.Types.ObjectId,
     ref: "Teacher",
@@ -20,4 +20,4 @@ const shema = mongoose?.Schema({
   timestamps: true,
 })
 
-export default mongoose?.models.Course || mongoose?.model("Course", shema)
+export default mongoose?.models.Course || mongoose?.model("Course", schema)

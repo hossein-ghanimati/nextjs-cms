@@ -10,7 +10,7 @@ export default async (req, res) => {
           const { title, teacher } = req.body;
           const course = await coursesModel.create({
             title,
-            teacher
+            teacher,
           });
 
           return res.status(201).json({
@@ -21,12 +21,16 @@ export default async (req, res) => {
           throwError(error);
         }
       case "GET": {
-        const {q} = req.query;
-        const courses = q ? await coursesModel.find({title: {$regex: q}}).populate("teacher") :  await coursesModel.find().populate("teacher");
+        const { q } = req.query;
+        const courses = q
+          ? await coursesModel
+              .find({ title: { $regex: q } }, "-__v")
+              .populate("teacher", "name")
+          : await coursesModel.find({}, "-__v -updatedAt").populate("teacher", "name");
         return res.status(200).json({
           message: "Courses fetched successfully.",
           data: courses,
-        })
+        });
       }
       default:
         throwRouteError();

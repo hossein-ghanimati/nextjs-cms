@@ -1,6 +1,6 @@
 const { default: mongoose } = require("mongoose");
-
-const shema = mongoose?.Schema({
+import { schema as CourseSchema } from "./course";
+const schema = mongoose?.Schema({
   name: {
     type: String,
     minLength: 3,
@@ -10,4 +10,12 @@ const shema = mongoose?.Schema({
   timestamps: true,
 })
 
-export default mongoose?.models.Teacher || mongoose?.model("Teacher", shema)
+schema.virtual({
+  courses: {
+    ref: "Course",
+    localField: "_id",
+    foreignField: "teacher",
+  }
+})
+
+export default mongoose?.models.Teacher || mongoose?.model("Teacher", schema)
