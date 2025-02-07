@@ -1,17 +1,21 @@
 import coursesModel from "@/models/course";
-import { throwError, throwRouteError } from "@/utils/api/error";
+import { throwError, throwErrorText, throwRouteError } from "@/utils/api/error";
 import "@/utils/api/middleWare";
 import { send404Response } from "@/utils/api/response";
+import courseSchema from "@/validator/course";
 export default async (req, res) => {
   try {
     switch (req.method) {
       case "POST":
         try {
-          const { title, teacher } = req.body;
-          const course = await coursesModel.create({
-            title,
-            teacher,
-          });
+          let result = null;
+          try {
+            result = courseSchema.parse(req.body);
+          } catch (error) {
+            throwErrorText(JSON.parse(error.message)[0].message)
+          }
+          console.log("result ->", result);
+          const course = await coursesModel.create(result);
 
           return res.status(201).json({
             message: "Course created successfully.",

@@ -12,12 +12,12 @@ const schema = mongoose?.Schema({
   timestamps: true,
 })
 
-schema?.virtual({
-  courses: {
-    ref: "Course",
-    localField: "_id",
-    foreignField: "teacher",
-  }
-})
+// schema?.virtual({
+//   courses: {
+//     ref: "Course",
+//     localField: "_id",
+//     foreignField: "teacher",
+//   }
+// })
 
 export default mongoose?.models.Teacher || mongoose?.model("Teacher", schema)
