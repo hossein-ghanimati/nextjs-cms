@@ -1,5 +1,7 @@
+import "@/utils/api/middleWare"
+
 const { default: mongoose } = require("mongoose");
-import { schema as CourseSchema } from "./course";
+import  "./course";
 const schema = mongoose?.Schema({
   name: {
     type: String,
@@ -10,7 +12,7 @@ const schema = mongoose?.Schema({
   timestamps: true,
 })
 
-schema.virtual({
+schema?.virtual({
   courses: {
     ref: "Course",
     localField: "_id",

@@ -1,5 +1,7 @@
+import "@/utils/api/middleWare"
+
 const { default: mongoose } = require("mongoose");
-import teachersModel from "./teacher";
+import "./teacher";
 
 export const schema = mongoose?.Schema({
   teacher: {
